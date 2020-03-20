@@ -5,6 +5,7 @@ import axios from "axios";
 
 import { SmurfContext } from "../contexts/SmurfContext";
 import SmurfForm from "./SmurfForm";
+import EditSmurf from "./EditSmurf";
 import List from "./List";
 import "./App.css";
 import { STATUS_IDLE, STATUS_LOADING, STATUS_ERROR } from "../constants";
@@ -43,13 +44,35 @@ function App() {
       });
   };
 
-  const onSubmitNewSmurf = values => {
-    history.push("/");
-    postSmurf(values);
+  const putSmurf = (id, values) => {
+    setStatus({ state: STATUS_LOADING });
+    axios
+      .put(`http://localhost:3333/smurfs/${id}`, values)
+      .then(res => {
+        setSmurfs(res.data);
+        setStatus({ state: STATUS_IDLE });
+      })
+      .catch(res => {
+        console.log("Failed to update smurf", res);
+        setStatus({ state: STATUS_ERROR, error: res.message });
+      });
   };
 
-  const onSubmit = values => {
-    console.log(values);
+  const deleteSmurf = id => {
+    setStatus({ state: STATUS_LOADING });
+    axios
+      .delete(`http://localhost:3333/smurfs/${id}`)
+      .then(res => {
+        setSmurfs(res.data);
+        setStatus({ state: STATUS_IDLE });
+      })
+      .catch(res => {
+        console.log("Failed to delete smurf", res);
+        setStatus({ state: STATUS_ERROR, error: res.message });
+      });
+  };
+
+  const onSubmitNewSmurf = values => {
     history.push("/");
     postSmurf(values);
   };
@@ -59,7 +82,7 @@ function App() {
   }, []);
 
   return (
-    <SmurfContext.Provider value={{ smurfs, fetchSmurfs, postSmurf }}>
+    <SmurfContext.Provider value={{ smurfs, fetchSmurfs, postSmurf, putSmurf, deleteSmurf }}>
       <div className="App">
         {status.state === STATUS_LOADING && <p>Loading...</p>}
         {status.state === STATUS_ERROR && <p>Error: {status.error}</p>}
@@ -72,10 +95,7 @@ function App() {
           </Route>
 
           {/* Edit existing smurf */}
-          <Route exact path="/edit/:id">
-            Editing is a WIP
-            <Link to="/">Go to home page</Link>
-          </Route>
+          <Route exact path="/edit/:id" component={EditSmurf} />
 
           {/* Home page / list of smurfs */}
           <Route exact path="/" component={List} />

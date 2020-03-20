@@ -5,7 +5,9 @@ import { useForm } from "react-hook-form";
 import { SmurfContext } from "../contexts/SmurfContext";
 
 function SmurfForm(props) {
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register } = useForm({
+    defaultValues: props.defaultValues
+  });
 
   return (
     <div>
