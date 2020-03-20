@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import { SmurfContext } from "../contexts/SmurfContext";
@@ -75,7 +75,9 @@ function App() {
   }, []);
 
   return (
-    <SmurfContext.Provider value={{ smurfs, fetchSmurfs, postSmurf, putSmurf, deleteSmurf }}>
+    <SmurfContext.Provider
+      value={{ smurfs, fetchSmurfs, postSmurf, putSmurf, deleteSmurf }}
+    >
       <div className="App">
         {status.state === STATUS_LOADING && <p>Loading...</p>}
         {status.state === STATUS_ERROR && <p>Error: {status.error}</p>}
