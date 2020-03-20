@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 import { SmurfContext } from "../contexts/SmurfContext";
+import NewSmurf from "./NewSmurf";
 import List from "./List";
 import "./App.css";
 
@@ -21,6 +22,7 @@ function App() {
     <SmurfContext.Provider value={{ smurfs }}>
       <div className="App">
         <Switch>
+          <Route exact path="/new" component={NewSmurf} />
           <Route exact path="/" component={List} />
           <Route path="/">
             <h1>Route not found</h1>

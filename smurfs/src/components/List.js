@@ -5,9 +5,11 @@ import { SmurfContext } from "../contexts/SmurfContext";
 
 function List() {
   const { smurfs } = useContext(SmurfContext);
+
   return (
     <div>
       <h2>Smurfs</h2>
+      <Link to="/new">New Smurf</Link>
       {smurfs.map(smurf => (
         <pre>{JSON.stringify(smurf)}</pre>
       ))}
