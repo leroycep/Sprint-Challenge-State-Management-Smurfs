@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 
+import Navigation from "./Navigation";
 import SmurfForm from "./SmurfForm";
 import { SmurfContext } from "../contexts/SmurfContext";
 
@@ -32,7 +33,8 @@ function EditSmurf() {
 
   return (
     <div>
-      <SmurfForm title="Edit Smurf" defaultValues={smurf} onSubmit={onSubmit}>
+    <Navigation path={[['/', "Home"], [null, "Edit"]]} title="Edit Smurf"/>
+      <SmurfForm defaultValues={smurf} onSubmit={onSubmit}>
         <button type="submit">Save</button>
         <button type="button" onClick={handleDelete}>Delete</button>
       </SmurfForm>

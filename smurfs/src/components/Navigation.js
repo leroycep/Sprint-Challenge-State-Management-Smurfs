@@ -10,7 +10,9 @@ const Bar = styled.div`
 `;
 
 function Navigation(props) {
-  const links = props.path.map(([link, text]) => <Link to={link}>{text}</Link>);
+  const links = props.path.map(([link, text]) =>
+    link !== null ? <Link to={link}>{text}</Link> : <span>{text}</span>
+  );
   return (
     <Bar>
       <div>{links}</div>

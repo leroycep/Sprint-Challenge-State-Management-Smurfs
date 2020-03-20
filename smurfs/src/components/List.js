@@ -16,7 +16,7 @@ function List() {
 
   return (
     <div>
-      <Navigation path={[["/", "Home"]]} title="Smurfs">
+      <Navigation path={[[null, "Home"]]} title="Smurfs">
         <Link to="/new">New Smurf</Link>
       </Navigation>
       <ListContainer>
