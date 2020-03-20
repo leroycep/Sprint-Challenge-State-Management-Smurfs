@@ -84,19 +84,19 @@ interfacing with. Below is documentation on how to interact with the **API**.
 
 - [ ] Plan and implement how you are going to manage your state for your
       application
-- [ ] You _must_ use either context or Redux as your state management system
-- [ ] Once you have planned out your state management system, fetch data from
+- [x] You _must_ use either context or Redux as your state management system
+- [x] Once you have planned out your state management system, fetch data from
       the smurf server and display the data it returns
-- [ ] Add a form to collect info for a new smurf, and make a POST request to the
+- [x] Add a form to collect info for a new smurf, and make a POST request to the
       server to add a new smurf to your village
 
 ## API documentation
 
 ### GET '/smurfs'
 
-- [ ] Retrieve an array all the Smurfs in the Smurf DB by writing a `GET` to the
+- [x] Retrieve an array all the Smurfs in the Smurf DB by writing a `GET` to the
       endpoint `/smurfs`.
-- [ ] Double check that your response from the server is an array of smurfs.
+- [x] Double check that your response from the server is an array of smurfs.
 
 ```js
 [
@@ -111,7 +111,7 @@ interfacing with. Below is documentation on how to interact with the **API**.
 
 ### POST '/smurfs'
 
-- [ ] Design the functionality to add a smurf to the Smurf DB you'll need all
+- [x] Design the functionality to add a smurf to the Smurf DB you'll need all
       three fields. `name`, `age`, and `height`.
 
 Example of the shape of data to be sent to the `POST` endpoint:
@@ -124,7 +124,7 @@ Example of the shape of data to be sent to the `POST` endpoint:
 }
 ```
 
-- [ ] Double check to make sure that a smurf is created correctly once your
+- [x] Double check to make sure that a smurf is created correctly once your
       functionality is built out.
 
 Initially Brainey will be in the array, but it takes more than one smurf to make
