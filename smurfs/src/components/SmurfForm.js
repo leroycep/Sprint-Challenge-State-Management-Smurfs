@@ -26,13 +26,14 @@ const Label = props => {
   return <Elem {...props}>{props.children}</Elem>;
 };
 
-const Input = props => {
-  const Elem = styled.input`
-    grid-area: ${props.name};
-    width: 100%;
-  `;
-  return <Elem {...props}>{props.children}</Elem>;
-};
+const Input = name => styled.input`
+  grid-area: ${name};
+  width: 100%;
+`;
+
+const Name = Input("name");
+const Age = Input("age");
+const Height = Input("height");
 
 const Buttons = styled.div`
   grid-area: buttons;
@@ -50,13 +51,13 @@ function SmurfForm(props) {
       <h2>{props.title}</h2>
       <Form onSubmit={handleSubmit(props.onSubmit)}>
         <Label for="name">Name: </Label>
-        <Input type="text" placeholder="Name" name="name" ref={register} />
+        <Name type="text" placeholder="Name" name="name" ref={register} />
 
         <Label for="age">Age: </Label>
-        <Input type="number" placeholder="Age" name="age" ref={register} />
+        <Age type="number" placeholder="Age" name="age" ref={register} />
 
         <Label for="height">Height: </Label>
-        <Input type="text" placeholder="Height" name="height" ref={register} />
+        <Height type="text" placeholder="Height" name="height" ref={register} />
 
         <Buttons>{props.children}</Buttons>
       </Form>
