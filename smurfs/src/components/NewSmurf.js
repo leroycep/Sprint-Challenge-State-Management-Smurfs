@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
+import { SmurfContext } from "../contexts/SmurfContext";
+
 function NewSmurf() {
   const history = useHistory();
+  const { fetchSmurfs } = useContext(SmurfContext);
   const { handleSubmit, register } = useForm();
 
   const onSubmit = values => {
     console.log(values);
     history.push("/");
+    fetchSmurfs();
   };
 
   return (
