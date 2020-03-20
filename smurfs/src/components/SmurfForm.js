@@ -13,7 +13,7 @@ const Form = styled.form`
     "labelheight height"
     "x buttons";
   grid-template-columns: auto 1fr;
-  grid-gap: 5px;
+  grid-gap: 20px 5px;
   padding: 0 5%;
   max-width: 1000px;
   margin: 0 auto;
@@ -29,6 +29,7 @@ const Label = props => {
 const Input = props => {
   const Elem = styled.input`
     grid-area: ${props.name};
+    width: 100%;
   `;
   return <Elem {...props}>{props.children}</Elem>;
 };
