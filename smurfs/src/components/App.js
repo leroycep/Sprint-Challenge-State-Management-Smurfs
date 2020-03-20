@@ -22,7 +22,21 @@ function App() {
         setStatus({ state: STATUS_IDLE });
       })
       .catch(res => {
-        console.log("Failed to fetch smurfs", smurfs);
+        console.log("Failed to fetch smurfs", res);
+        setStatus({ state: STATUS_ERROR, error: res.message });
+      });
+  };
+
+  const postSmurf = smurf => {
+    setStatus({ state: STATUS_LOADING });
+    axios
+      .post("http://localhost:3333/smurfs", smurf)
+      .then(res => {
+        setSmurfs(res.data);
+        setStatus({ state: STATUS_IDLE });
+      })
+      .catch(res => {
+        console.log("Failed to post smurf", res);
         setStatus({ state: STATUS_ERROR, error: res.message });
       });
   };
@@ -32,7 +46,7 @@ function App() {
   }, []);
 
   return (
-    <SmurfContext.Provider value={{ smurfs, fetchSmurfs }}>
+    <SmurfContext.Provider value={{ smurfs, fetchSmurfs, postSmurf }}>
       <div className="App">
         {status.state === STATUS_LOADING && <p>Loading...</p>}
         {status.state === STATUS_ERROR && <p>Error: {status.error}</p>}

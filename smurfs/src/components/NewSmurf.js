@@ -6,20 +6,22 @@ import { SmurfContext } from "../contexts/SmurfContext";
 
 function NewSmurf() {
   const history = useHistory();
-  const { fetchSmurfs } = useContext(SmurfContext);
+  const { fetchSmurfs, postSmurf } = useContext(SmurfContext);
   const { handleSubmit, register } = useForm();
 
   const onSubmit = values => {
     console.log(values);
     history.push("/");
-    fetchSmurfs();
+    postSmurf(values);
   };
 
   return (
     <div>
       <h2>New Smurf</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input name="name" ref={register} />
+        <input type="text" placeholder="Name" name="name" ref={register} />
+        <input type="number" placeholder="Age" name="age" ref={register} />
+        <input type="text" placeholder="Height" name="height" ref={register} />
         <button type="submit">Submit</button>
       </form>
     </div>
