@@ -33,10 +33,18 @@ function EditSmurf() {
 
   return (
     <div>
-    <Navigation path={[['/', "Home"], [null, "Edit"]]} title="Edit Smurf"/>
+      <Navigation
+        path={[
+          ["/", "Home"],
+          [null, "Edit"]
+        ]}
+        title="Edit Smurf"
+      />
       <SmurfForm defaultValues={smurf} onSubmit={onSubmit}>
         <button type="submit">Save</button>
-        <button type="button" onClick={handleDelete}>Delete</button>
+        <button type="button" onClick={handleDelete}>
+          Delete
+        </button>
       </SmurfForm>
     </div>
   );

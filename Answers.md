@@ -34,9 +34,10 @@
 1. Describe `redux-thunk`, what does it allow us to do? How does it change our
    `action-creators`?
 
-   - `redux-thunk` allows use to create asynchronous functions. It means that we
+   - `redux-thunk` allows us to create asynchronous functions. It means that we
      can create function actions that do work (like fetching data) and create a
      new action when they are done.
+   - Fetch state without holding up the rendering thread.
 
 1. What is your favorite state management system you've learned and this sprint?
    Please explain why!
