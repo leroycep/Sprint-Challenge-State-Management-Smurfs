@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import Navigation from "./Navigation";
 import Smurf from "./Smurf";
 import { SmurfContext } from "../contexts/SmurfContext";
 
@@ -15,8 +16,9 @@ function List() {
 
   return (
     <div>
-      <h2>Smurfs</h2>
-      <Link to="/new">New Smurf</Link>
+      <Navigation path={[["/", "Home"]]} title="Smurfs">
+        <Link to="/new">New Smurf</Link>
+      </Navigation>
       <ListContainer>
         {smurfs.map(smurf => (
           <Smurf key={smurf.id} smurf={smurf} />
