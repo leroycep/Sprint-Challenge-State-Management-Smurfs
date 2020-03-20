@@ -51,8 +51,19 @@ function App() {
         {status.state === STATUS_LOADING && <p>Loading...</p>}
         {status.state === STATUS_ERROR && <p>Error: {status.error}</p>}
         <Switch>
+          {/* Create a new smurf */}
           <Route exact path="/new" component={NewSmurf} />
+
+          {/* Edit existing smurf */}
+          <Route exact path="/edit/:id">
+            Editing is a WIP
+            <Link to="/">Go to home page</Link>
+          </Route>
+
+          {/* Home page / list of smurfs */}
           <Route exact path="/" component={List} />
+
+          {/* What shows up when the route is unknown */}
           <Route path="/">
             <h1>Route not found</h1>
             <Link to="/">Go to home page</Link>

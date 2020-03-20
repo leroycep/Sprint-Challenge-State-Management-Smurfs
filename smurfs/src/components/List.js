@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
+import Smurf from "./Smurf";
 import { SmurfContext } from "../contexts/SmurfContext";
 
 function List() {
@@ -11,7 +12,7 @@ function List() {
       <h2>Smurfs</h2>
       <Link to="/new">New Smurf</Link>
       {smurfs.map(smurf => (
-        <pre>{JSON.stringify(smurf)}</pre>
+        <Smurf key={smurf.id} smurf={smurf} />
       ))}
     </div>
   );
