@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
 import { SmurfContext } from "../contexts/SmurfContext";
-import NewSmurf from "./NewSmurf";
+import SmurfForm from "./SmurfForm";
 import List from "./List";
 import "./App.css";
 import { STATUS_IDLE, STATUS_LOADING, STATUS_ERROR } from "../constants";
@@ -12,6 +12,8 @@ import { STATUS_IDLE, STATUS_LOADING, STATUS_ERROR } from "../constants";
 function App() {
   const [smurfs, setSmurfs] = useState([]);
   const [status, setStatus] = useState({ state: STATUS_IDLE });
+
+  const history = useHistory();
 
   const fetchSmurfs = () => {
     setStatus({ state: STATUS_LOADING });
@@ -41,6 +43,17 @@ function App() {
       });
   };
 
+  const onSubmitNewSmurf = values => {
+    history.push("/");
+    postSmurf(values);
+  };
+
+  const onSubmit = values => {
+    console.log(values);
+    history.push("/");
+    postSmurf(values);
+  };
+
   useEffect(() => {
     fetchSmurfs();
   }, []);
@@ -52,7 +65,11 @@ function App() {
         {status.state === STATUS_ERROR && <p>Error: {status.error}</p>}
         <Switch>
           {/* Create a new smurf */}
-          <Route exact path="/new" component={NewSmurf} />
+          <Route exact path="/new">
+            <SmurfForm title="New Smurf" onSubmit={onSubmitNewSmurf}>
+              <button type="submit">Submit</button>
+            </SmurfForm>
+          </Route>
 
           {/* Edit existing smurf */}
           <Route exact path="/edit/:id">
